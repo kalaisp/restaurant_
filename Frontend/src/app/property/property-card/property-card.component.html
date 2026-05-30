@@ -1,27 +1,69 @@
 <div class="property-card" *ngIf="property">
+
   <div class="image-container">
+
+    <!-- Images unchanged -->
     <img *ngIf="property.Image"
-      src="assets/images/{{property.Image}}.png " alt="House Image" class="property-image">
+         src="assets/images/{{property.Image}}.png"
+         alt="House Image"
+         class="property-image">
     <img *ngIf="!property.Image"
-      src="assets/images/house_default.png "
-      alt="House Image"
-      class="property-image"
-    >
-    <div *ngIf="!hideIcones" class="image-overlay member-icons animate">
-      <button class="btn btn-primary btn-sm" routerLink="/property-details/{{property.Id}}"><i class="far fa-edit"></i></button>
-      <button class="btn btn-primary btn-sm"><i class="far fa-address-book"></i></button>
+         src="assets/images/house_default.png"
+         alt="House Image"
+         class="property-image">
+
+    <!-- Sell/Rent badge -->
+    <span class="sell-badge">
+      {{ property.SellRent === 1 ? 'For Sale' : 'For Rent' }}
+    </span>
+
+    <!-- Overlay with buttons unchanged -->
+    <div *ngIf="!hideIcones" class="image-overlay">
+      <button class="overlay-btn"
+              routerLink="/property-details/{{property.Id}}">
+        <i class="far fa-edit"></i> View
+      </button>
+      <button class="overlay-btn">
+        <i class="far fa-address-book"></i> Contact
+      </button>
     </div>
+
   </div>
-  <div class="card-body p-1">
-    <h1 class="mb-0">{{ property.BHK }} BHK{{property.PType}}</h1>
-    in {{property.Name}}
-    <span *ngIf="property.Name">,</span>
-      {{property.City}}
-      <h6 class="mt-2">{{property.FType}}
-      <span *ngIf="property.FType !== null">Furnished</span> | Ready to Move</h6>
-        <hr class="mt-0 mb-2">
-        <h6 class="mt-0">Price: <span class="font-highlight">{{property.Price}}INR.</span>|
-          Area: <span class="font-highlight">{{property.BuildArea}}Sq Ft</span>
-        </h6>
+
+  <div class="card-body">
+
+    <!-- BHK + Type -->
+    <h5 class="prop-title">
+      {{ property.BHK }} BHK <span>{{ property.PType }}</span>
+    </h5>
+
+    <!-- Location -->
+    <p class="prop-location">
+      <span class="loc-icon">&#128205;</span>
+      {{ property.Name }}<span *ngIf="property.Name">,</span>
+      {{ property.City }}
+    </p>
+
+    <!-- Furnish -->
+    <p class="prop-furnish">
+      {{ property.FType }}
+      <span *ngIf="property.FType !== null">Furnished</span>
+      &nbsp;&#183;&nbsp; Ready to Move
+    </p>
+
+    <hr class="divider">
+
+    <!-- Price & Area -->
+    <div class="prop-meta">
+      <div class="meta-item">
+        <span class="meta-label">Price</span>
+        <span class="meta-value">{{ property.Price }} INR</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Area</span>
+        <span class="meta-value">{{ property.BuildArea }} Sq Ft</span>
+      </div>
+    </div>
+
   </div>
 </div>

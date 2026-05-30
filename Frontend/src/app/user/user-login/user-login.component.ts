@@ -18,11 +18,13 @@ export class UserLoginComponent implements OnInit {
               private alertify:AlertifyService,
               private router:Router
   ) { }
-
+showPassword = false;
+loginSubmited = false;
   ngOnInit() {
   }
   onLogin(loginForm: NgForm) {
-    const token = this.authService.authuser(
+    this.loginSubmited = true;
+     const token = this.authService.authuser(
       loginForm.value
     );
     if (token) {
@@ -32,6 +34,8 @@ export class UserLoginComponent implements OnInit {
     }
     else{
       this.alertify.error('user id or password is wrong');
+       loginForm.reset();
+      this.loginSubmited = false;
     }
   }
 }

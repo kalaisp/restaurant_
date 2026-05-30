@@ -1,132 +1,184 @@
-<div class="row shadow">
-  <div class="col-sm-4 p-0">
-    <div class="card">
-      <div class="card-img-wrapper">
-        <img *ngIf="property.Image" class="card-img-top" src="assets/images/{{property.Image}}.png">
-        <img *ngIf="!property.Image" class="card-img-top" src="assets/images/house_default.png">
+<div class="detail-wrap">
+
+  <!-- LEFT PANEL -->
+  <div class="detail-left">
+
+    <!-- Image -->
+    <div class="detail-img-wrap">
+      <img *ngIf="property.Image"
+           src="assets/images/{{property.Image}}.png"
+           alt="Property Image"
+           class="detail-img">
+      <img *ngIf="!property.Image"
+           src="assets/images/house_default.png"
+           alt="Property Image"
+           class="detail-img">
+
+      <!-- Sale/Rent badge -->
+      <span class="detail-badge">
+        <span *ngIf="property.SellRent == 1">For Sale</span>
+        <span *ngIf="property.SellRent == 2">For Rent</span>
+      </span>
+    </div>
+
+    <!-- Property Info -->
+    <div class="detail-info">
+      <h2 class="detail-name">{{ property.Name }}</h2>
+      <p class="detail-sub">
+        {{ property.BHK }} BHK {{ property.PType }}
+        &nbsp;&#183;&nbsp;
+        <span class="detail-price">${{ property.Price }}</span>
+      </p>
+      <p class="detail-city">&#128205; {{ property.City }}</p>
+
+      <hr class="detail-hr">
+
+      <div class="detail-specs">
+        <div class="spec-item">
+          <span class="spec-label">Build Area</span>
+          <span class="spec-value">{{ property.BuildArea }} Sqft</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Carpet Area</span>
+          <span class="spec-value">{{ property.carpetArea }} Sqft</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Furnishing</span>
+          <span class="spec-value">{{ property.FType }}</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Available for</span>
+          <span class="spec-value">
+            <span *ngIf="property.SellRent == 1">Purchase</span>
+            <span *ngIf="property.SellRent == 2">Rent</span>
+          </span>
+        </div>
       </div>
-      <div class="card-body">
-        <h1 class="card-title">{{property.Name}}</h1>
-        <div>
-           <strong>{{property.BHK}} BHK {{property.PType}} @ ${{property.Price}}</strong>
-        </div>
-        <div>
-          <strong>in {{property.City}}</strong>
-        </div><hr>
-        <div>
-          <strong>Build Area:</strong>
-          {{property.BuildArea}} Sqft
-        </div>
-        <div>
-          <strong>Carpet Area:</strong>
-          {{property.carpetArea}} Sqft
-        </div>
-        <div>
-          <strong>Furnishing Type:</strong>
-          {{property.FType}}
-        </div>
-        <div>
-          <strong>Available for: </strong>
-          <span *ngIf="property.SellRent == 1">Purchase</span>
-          <span *ngIf="property.SellRent == 2">Rent</span>
-        </div>
-      </div>
-      <div class="card-footer">
-        <div class="btn-group d-flex">
-          <button class="btn btn-primary">Like</button>
-          <button class="btn btn-success">Message</button>
-        </div>
+
+      <hr class="detail-hr">
+
+      <!-- Action Buttons -->
+      <div class="detail-actions">
+        <button class="btn-like">&#9825; Like</button>
+        <button class="btn-message">&#9993; Message</button>
       </div>
     </div>
   </div>
-    <div class="col-sm-8 p-0">
-      <div class="tab-panel">
-        <tabset class="member-tabset">
-        <tab heading="Overview">
-          <h1>Overview</h1>
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="heading">
-                <strong>Project Name</strong>
-                <p>{{property.Name}}</p>
-              </div>
-              <div class="heading">
-                  <strong>Floor Number</strong>
-                  <p>{{property.floorNo}} of {{property.totalFloors}}</p>
-              </div>
-              <div class="heading">
-                  <strong>Age of Property</strong>
-                  <p>{{property.age}}</p>
-              </div>
-              <div class="heading">
-                  <strong>Posession</strong>
-                  <p>{{property.PossessionOn}}</p>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="heading">
-                  <strong>Main Entrance</strong>
-                  <p>{{property.mainEntrance}}</p>
-              </div>
 
-              <div class="heading">
-                  <strong>Gated Community</strong>
-                  <p *ngIf="property.gated">Yes</p>
-                  <p *ngIf="!property.gated">No</p>
-              </div>
+  <!-- RIGHT PANEL -->
+  <div class="detail-right">
+    <tabset class="detail-tabs">
 
-              <div class="heading">
-                  <strong>Security Deposit</strong>
-                  <p>{{property.security}}</p>
-              </div>
-              <div class="heading">
-                  <strong>Maintenance</strong>
-                  <p>{{property.maintenance}}</p>
-              </div>
+      <!-- OVERVIEW TAB -->
+      <tab heading="Overview">
+        <div class="tab-content-wrap">
+          <h4 class="tab-title">Overview</h4>
+          <div class="overview-grid">
+
+            <div class="overview-item">
+              <span class="ov-label">Project Name</span>
+              <span class="ov-value">{{ property.Name }}</span>
             </div>
-              <div class="col-sm-12">
-                <div class="heading">
-                    <strong>About Property</strong>
-                    <p>{{property.description}}</p>
-                </div>
-              </div>
+            <div class="overview-item">
+              <span class="ov-label">Main Entrance</span>
+              <span class="ov-value">{{ property.mainEntrance || '—' }}</span>
             </div>
-        </tab>
-        <tab heading="Address">
-          <div class="col-sm-12">
-            <h1>Address</h1>
-            <div class="heading">
-              <strong>{{property.address}}</strong><br/>
-              <strong>{{property.address2}}</strong><br/>
-              <strong>{{property.City}}</strong>
+            <div class="overview-item">
+              <span class="ov-label">Floor Number</span>
+              <span class="ov-value">
+                {{ property.floorNo || '—' }} of {{ property.totalFloors || '—' }}
+              </span>
             </div>
+            <div class="overview-item">
+              <span class="ov-label">Gated Community</span>
+              <span class="ov-value">
+                <span *ngIf="property.gated" class="badge-yes">Yes</span>
+                <span *ngIf="!property.gated" class="badge-no">No</span>
+              </span>
+            </div>
+            <div class="overview-item">
+              <span class="ov-label">Age of Property</span>
+              <span class="ov-value">{{ property.age || '—' }}</span>
+            </div>
+            <div class="overview-item">
+              <span class="ov-label">Security Deposit</span>
+              <span class="ov-value">{{ property.security || '—' }}</span>
+            </div>
+            <div class="overview-item">
+              <span class="ov-label">Possession</span>
+              <span class="ov-value">{{ property.PossessionOn || '—' }}</span>
+            </div>
+            <div class="overview-item">
+              <span class="ov-label">Maintenance</span>
+              <span class="ov-value">{{ property.maintenance || '—' }}</span>
+            </div>
+
+            <!-- About full width -->
+            <div class="overview-item full-width">
+              <span class="ov-label">About Property</span>
+              <span class="ov-value about-text">
+                {{ property.description || 'No description provided.' }}
+              </span>
+            </div>
+
           </div>
-        </tab>
-        <tab heading="Photos">
+        </div>
+      </tab>
+
+      <!-- ADDRESS TAB -->
+      <tab heading="Address">
+        <div class="tab-content-wrap">
+          <h4 class="tab-title">Address</h4>
+          <div class="address-card">
+            <p class="addr-line">&#127968; {{ property.address }}</p>
+            <p class="addr-line" *ngIf="property.address2">
+              {{ property.address2 }}
+            </p>
+            <p class="addr-line">
+              &#128205; <strong>{{ property.City }}</strong>
+            </p>
+          </div>
+        </div>
+      </tab>
+
+      <!-- PHOTOS TAB -->
+      <tab heading="Photos">
+        <div class="tab-content-wrap">
           <div class="main-image-wrapper position-relative">
-            <img [src]="selectedImage" class="w-100" style="height:420px; object-fit:cover;">
-            <button class="arrow arrow-left" (click)="changeSlide(-1)">&#8249;</button>
-            <button class="arrow arrow-right" (click)="changeSlide(1)">&#8250;</button>
-            <div class="counter">{{ selectedIndex + 1 }} / {{ images.length }}</div>
-          </div>
-          <!-- Thumbnails -->
-          <div class="thumbnails d-flex gap-2 p-2" style="background:#1a1a1a; overflow-x:auto;">
-            <div *ngFor="let img of images; let i = index"
-                class="thumb"
-                [class.active]="i === selectedIndex"
-                (click)="goTo(i)"
-                style="flex:0 0 calc(25% - 5px); height:90px; cursor:pointer; border-radius:6px; overflow:hidden; border:2px solid transparent; opacity:0.6;"
-                [style.opacity]="i === selectedIndex ? '1' : '0.6'"
-                [style.border-color]="i === selectedIndex ? '#4a90e2' : 'transparent'">
-              <img [src]="img" style="width:100%; height:100%; object-fit:cover;">
+            <img [src]="selectedImage"
+                 class="w-100 main-photo">
+            <button class="arrow arrow-left"
+                    (click)="changeSlide(-1)">&#8249;</button>
+            <button class="arrow arrow-right"
+                    (click)="changeSlide(1)">&#8250;</button>
+            <div class="counter">
+              {{ selectedIndex + 1 }} / {{ images.length }}
             </div>
           </div>
-       </tab>
-        <tab heading="Contact">
-          <h1>Contact Detail</h1>
+          <div class="thumbnails">
+            <div *ngFor="let img of images; let i = index"
+                 class="thumb"
+                 [class.active]="i === selectedIndex"
+                 (click)="goTo(i)">
+              <img [src]="img">
+            </div>
+          </div>
+        </div>
+      </tab>
+
+      <!-- CONTACT TAB -->
+      <tab heading="Contact">
+        <div class="tab-content-wrap">
+          <h4 class="tab-title">Contact Details</h4>
+
+
+            <h1>Contact Detail</h1>
           This should be restricted area and only registered user should be able to see seller contact details
-        </tab>
-      </tabset>
-    </div>
+
+        </div>
+      </tab>
+
+    </tabset>
   </div>
+
 </div>

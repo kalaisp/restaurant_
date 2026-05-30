@@ -1,35 +1,81 @@
-<label>City</label>
-  <input [(ngModel)]="City">
-<button type="button"(click)="onCityFilter()">Search</button>
-<button type="button"(click)="onCityFilterClear()">Clear</button>&nbsp;
+<!-- ===== SEARCH & FILTER BAR ===== -->
+<div class="filter-bar">
+  <div class="filter-inner">
 
-<label> Sort by &nbsp;</label>
-<select [(ngModel)]='SortbyParam'>
-  <option value="City">City</option>
-  <option value="Price">Price</option>
-</select>
-<button type="button"(click)="onSortDirection()">
-  <i *ngIf="SortDirection==='asc'" class="fas fa-sort-alpha-down"></i>
-  <i *ngIf="SortDirection==='desc'" class="fas fa-sort-alpha-up"></i>
-</button>
-<!-- Loading -->
-<div *ngIf="isLoading" class="text-center mt-5">
-  <div class="spinner-border text-primary" role="status"></div>
+    <!-- City Search -->
+    <div class="search-wrap">
+      <span class="search-icon">&#128269;</span>
+      <input
+        class="search-input"
+        [(ngModel)]="City"
+        placeholder="Search by city..."
+        (keyup.enter)="onCityFilter()">
+    </div>
+
+    <!-- Buttons -->
+    <button class="btn-search" type="button" (click)="onCityFilter()">
+      Search
+    </button>
+    <button class="btn-clear" type="button" (click)="onCityFilterClear()">
+      Clear
+    </button>
+
+    <!-- Sort -->
+    <div class="sort-wrap">
+      <span class="sort-label">Sort by</span>
+      <select class="sort-select" [(ngModel)]="SortbyParam">
+        <option value="City">City</option>
+        <option value="Price">Price</option>
+      </select>
+      <button class="sort-dir-btn" type="button" (click)="onSortDirection()">
+        <span *ngIf="SortDirection === 'asc'">&#8593; Asc</span>
+        <span *ngIf="SortDirection === 'desc'">&#8595; Desc</span>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== LOADING ===== -->
+<div *ngIf="isLoading" class="loading-wrap">
+  <div class="spinner"></div>
   <p>Loading properties...</p>
 </div>
 
-<!-- Error -->
-<div *ngIf="hasError" class="alert alert-danger mt-3">
-  Failed to load properties.
+<!-- ===== ERROR ===== -->
+<div *ngIf="hasError" class="error-wrap">
+  &#9888; Failed to load properties. Please try again.
 </div>
 
-<!-- Properties -->
-<div *ngIf="!isLoading && !hasError">
-  <div class="row">
-    <div *ngFor="let property of properties|filter: searchCity : 'City'|sort:[SortbyParam,SortDirection]" class="col-sm-4">
-      <div class="shadow-lg p-3 mb-4">
-        <app-property-card [property]="property"></app-property-card>
-      </div>
+<!-- ===== PROPERTY GRID ===== -->
+<div *ngIf="!isLoading && !hasError" class="property-section">
+
+  <!-- Results count -->
+  <p class="results-count">
+    Showing <strong>
+      {{ (properties | filter: City : 'City').length }}
+    </strong> properties
+  </p>
+
+  <div class="property-grid">
+    <div
+      *ngFor="let property of properties
+        | filter: City : 'City'
+        | sort: [SortbyParam, SortDirection]"
+      class="property-item">
+      <app-property-card [property]="property"></app-property-card>
     </div>
   </div>
+
+  <!-- Empty state -->
+  <div class="empty-state"
+       *ngIf="(properties | filter: City : 'City').length === 0">
+    <p class="empty-icon">&#127968;</p>
+    <h5>No properties found</h5>
+    <p>Try searching a different city</p>
+    <button class="btn-search" (click)="onCityFilterClear()">
+      Clear Search
+    </button>
+  </div>
+
 </div>

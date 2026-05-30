@@ -17,8 +17,24 @@ authuser(user: any) {
   }
   return UserArray.find(
     (p: User) =>
-      p.username === user.username &&
+      p.email === user.email &&
       p.password === user.password
   );
   }
+
 }
+// authuser(user: any) {
+
+//   let UserArray: User[] = [];
+//   if (localStorage.getItem('users')) {
+//     UserArray = JSON.parse(
+//       localStorage.getItem('users') || '[]'
+//     );
+//   }
+//   return UserArray.find(
+//     (p: User) =>
+//       p.username === user.username &&
+//       p.password === user.password
+//   );
+//   }
+// }
