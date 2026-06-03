@@ -1,0 +1,59 @@
+
+using System.Net;
+using WebAPI.Errors;
+
+namespace WebAPI.Middelwares
+{
+    public class ExceptionMiddelwares
+    {
+        private readonly RequestDelegate next;
+        private readonly ILogger<ExceptionMiddelwares> logger;
+        private readonly IHostEnvironment env;
+
+        public ExceptionMiddelwares(RequestDelegate next,ILogger<ExceptionMiddelwares>logger,
+        IHostEnvironment env)
+        {
+            
+            this.logger = logger;
+            this.env = env;
+            this.next=next;
+        }
+        public async Task Invoke(HttpContext context)
+        {
+            try
+            {
+                await next(context);
+            }
+            catch(Exception ex)
+            {
+                ApiError response;
+                HttpStatusCode statusCode=HttpStatusCode.InternalServerError;
+                string message;
+                var exceptionType=ex.GetType();
+                if (exceptionType==typeof(UnauthorizedAccessException))
+                {
+                    statusCode=HttpStatusCode.Forbidden;
+                    message="You are not authorized";
+                }
+                else
+                {
+                    statusCode=HttpStatusCode.InternalServerError;
+                    message="Some unkown error occuried";
+                }
+                if (env.IsDevelopment())
+                {
+                    response=new ApiError((int)statusCode,ex.Message,ex.StackTrace.ToString());
+                }
+                else
+                {
+                    response=new ApiError((int)statusCode,message);
+                }
+                logger.LogError(ex,ex.Message);
+                context.Response.StatusCode=(int)statusCode;
+                context.Response.ContentType="application/json";
+             
+                await context.Response.WriteAsync(response.ToString());
+            }
+        }
+    }
+}

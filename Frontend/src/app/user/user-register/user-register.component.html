@@ -72,7 +72,7 @@
           <span id="s1"></span><span id="s2"></span>
           <span id="s3"></span><span id="s4"></span>
         </div>
-        <div class="strength-label" id="sLabel">Enter a password</div>
+        <!-- <div class="strength-label" id="sLabel">Enter a password</div> -->
         <span *ngIf="!password.valid && (password.touched || userSubmited)"
               class="error-block">
           <span *ngIf="password?.errors?.['required']">Please provide password</span>

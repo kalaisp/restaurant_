@@ -81,7 +81,15 @@
                     <!-- City -->
                     <div class="col-md-12 mb-4">
                       <label class="form-label fw-bold">City</label>
-                      <input type="text" class="form-control" formControlName="City" placeholder="Enter city">
+                      <!-- <input type="text" class="form-control" formControlName="City" [(ng)]> -->
+                    <select class="form-select" formControlName="City">
+  <option [ngValue]="null">-- Select City --</option>
+
+  <option *ngFor="let city of cityList"
+          [ngValue]="city.id">
+    {{ city.name }}
+  </option>
+</select>
                       <div class="error-block" *ngIf="City.invalid && (nextClicked || City.touched)">
                         Please select city
                       </div>

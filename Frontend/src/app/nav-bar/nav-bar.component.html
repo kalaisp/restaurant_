@@ -26,11 +26,12 @@
       <ul class="navbar-nav ms-auto">
         <li *ngIf="!loggedin()" class="nav-item">
           <a class="nav-link" routerLink="user/register"
-             routerLinkActive="active">Register</a>
+             routerLinkActive="active"><i class="fa-solid fa-user-plus"></i>Register</a>
         </li>
         <li *ngIf="!loggedin()" class="nav-item">
+
           <a class="nav-link" routerLink="user/login"
-             routerLinkActive="active">Login</a>
+             routerLinkActive="active"> <i class="fa-solid fa-right-to-bracket"></i>Login</a>
         </li>
         <li *ngIf="loggedin()" class="nav-item" dropdown>
           <a href="#" class="nav-link dropdown-toggle text-light"

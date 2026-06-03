@@ -13,7 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { property } from '../../model/property';
 import { Housing } from '../../services/housing';
 import { AlertifyService } from '../../services/alertify.service';
-
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-add-property',
   standalone:true,
@@ -30,9 +30,11 @@ export class AddPropertyComponent implements OnInit {
   constructor(private fb:FormBuilder,
     private hosusingService:Housing,
     private alertfy:AlertifyService,
+     private http: HttpClient,
     private datePipe: DatePipe,private route: Router) { }
     selectedBhk: number = 1;
     property= new property();
+
     propertyView:iPropertyBase = {
       Id: null,
       Name: '',
@@ -67,7 +69,9 @@ export class AddPropertyComponent implements OnInit {
   propertyTypes:Array<string>=['House','Appartment','Duplex'];
   furnishTypes:Array<string>=['Fully','Semi','Unfurnished'];
   readytoTypes:Array<string>=['East','West','South','North'];
+  cityList: Array<any> = [];
   ngOnInit() {
+    this.loadCities();
     this.createAddPropertyForm();
     this.addPropertyForm.valueChanges.subscribe(data => {
       this.propertyView.BHK = data.BasicInfo.BHK;
@@ -91,6 +95,19 @@ export class AddPropertyComponent implements OnInit {
       this.propertyView.description = this.Description.value;
     });
   }
+ loadCities() {
+  console.log('Loading cities...'); // ✅ add this
+  this.http.get<any[]>('http://localhost:5245/api/city')
+    .subscribe({
+      next: (data) => {
+        this.cityList = data;
+        console.log('cityList:', this.cityList); // ✅ add this
+      },
+      error: (err) => {
+        console.error('City API error:', err); // ✅ see error
+      }
+    });
+}
   ngAfterViewInit(): void {
     setTimeout(() => {
     },1000);
