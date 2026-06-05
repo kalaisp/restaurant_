@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using WebAPI.Dto;
@@ -20,6 +21,7 @@ namespace WebAPI.Controllers
             
         }
         [HttpPost("login")]
+        [AllowAnonymous]
         public async Task<IActionResult>Login(LoginReqdto loginreq)
         {
             var user =await uow.userRepository.Authenticate(loginreq.Username,loginreq.Password);
@@ -31,6 +33,16 @@ namespace WebAPI.Controllers
             loginRes.UserName=user.Username;
             loginRes.Token=CreateJWT(user);
             return Ok(loginRes);
+        }  
+        [HttpPost("register")]
+        [AllowAnonymous]
+        public async Task<IActionResult>Register(LoginReqdto loginreq)
+        {
+            if(await uow.userRepository.UserAlreadyExists(loginreq.Username))
+                return BadRequest("User already exists");
+                uow.userRepository.Register(loginreq.Username,loginreq.Password);
+                await uow.SaveAsync();
+                return StatusCode(201);
         }
         private string CreateJWT(Users user)
         {

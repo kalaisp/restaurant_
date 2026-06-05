@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { User } from './../model/user';
 import { Injectable } from '@angular/core';
 
@@ -6,9 +7,9 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-constructor() { }
+constructor(private http:HttpClient) { }
 authuser(user: any) {
-
+  //return this.http.post;
   let UserArray: User[] = [];
   if (localStorage.getItem('users')) {
     UserArray = JSON.parse(

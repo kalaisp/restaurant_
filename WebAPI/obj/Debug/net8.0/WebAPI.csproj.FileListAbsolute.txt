@@ -137,7 +137,6 @@ D:\restorent\webapi\obj\Debug\net8.0\WebAPI.AssemblyInfo.cs
 D:\restorent\webapi\obj\Debug\net8.0\WebAPI.csproj.CoreCompileInputs.cache
 D:\restorent\webapi\obj\Debug\net8.0\WebAPI.MvcApplicationPartsAssemblyInfo.cs
 D:\restorent\webapi\obj\Debug\net8.0\WebAPI.MvcApplicationPartsAssemblyInfo.cache
-D:\restorent\webapi\obj\Debug\net8.0\WebAPI.sourcelink.json
 D:\restorent\webapi\obj\Debug\net8.0\rjimswa.dswa.cache.json
 D:\restorent\webapi\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
 D:\restorent\webapi\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json

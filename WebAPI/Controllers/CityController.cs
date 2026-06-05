@@ -1,10 +1,10 @@
-using Microsoft.AspNetCore.Mvc;
 using WebAPI.Dto;
 using WebAPI.Interfaces;
 using AutoMapper;
 using WebAPI.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 namespace WebAPI.Controllers
 {
    
@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
             this.mapper=mapper;
         }       
 
-        [HttpGet]
+        [HttpGet("cities")]
         [AllowAnonymous]
         public async Task<IActionResult> GetCities()
         {           
