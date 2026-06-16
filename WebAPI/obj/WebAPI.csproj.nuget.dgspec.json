@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\restorent\\webapi\\WebAPI.csproj": {}
+    "D:\\restorent\\WebAPI\\WebAPI.csproj": {}
   },
   "projects": {
-    "D:\\restorent\\webapi\\WebAPI.csproj": {
+    "D:\\restorent\\WebAPI\\WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\restorent\\webapi\\WebAPI.csproj",
+        "projectUniqueName": "D:\\restorent\\WebAPI\\WebAPI.csproj",
         "projectName": "WebAPI",
-        "projectPath": "D:\\restorent\\webapi\\WebAPI.csproj",
+        "projectPath": "D:\\restorent\\WebAPI\\WebAPI.csproj",
         "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "D:\\restorent\\webapi\\obj\\",
+        "outputPath": "D:\\restorent\\WebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
