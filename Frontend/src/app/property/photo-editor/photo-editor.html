@@ -12,13 +12,7 @@
       (click)="deletePhoto(property.id!,photo)"><i class="fa fa-trash"></i></button>
     </div>
   </div>
-  <div
-  class="dropzone"
-  [class.drag-over]="isDragOver"
-  (dragover)="onDragOver($event)"
-  (dragleave)="onDragLeave($event)"
-  (drop)="onDrop($event)"
->
+  <div class="dropzone" [class.drag-over]="isDragOver" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" (drop)="onDrop($event)">
   <input
     type="file"
     id="fileInput"

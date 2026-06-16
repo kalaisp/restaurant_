@@ -4,14 +4,13 @@ export interface iPropertyBase{
   price: number | null;
   sellRent: number | null;
   furnishingType: number | null;
-
   propertyType: number | null;
   type: string | null;
   bhk: number | null;
   builtArea: number | null;
   city: string;
   image?: string;
-estPossessionOn?: string | null;
+  estPossessionOn?: string | null;
   propertyTypeId: number|null;
   furnishingTypeId: number|null;
   carpetArea?: number|null;
@@ -19,7 +18,7 @@ estPossessionOn?: string | null;
   address2?: string|null;
   CityId: number|null;
   floorNo?: string|null;
- AOP?:string;
+  AOP?:string;
   totalFloors?: string|null;
   readyToMove: boolean|null;
   age?: string|null;
@@ -31,5 +30,4 @@ estPossessionOn?: string | null;
   photo?: string|null;
   EstPossessionOn?:Date;
   description?: string|null;
-
 }

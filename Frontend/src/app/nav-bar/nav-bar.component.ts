@@ -13,18 +13,15 @@ import { AlertifyService } from '../services/alertify.service';
 export class NavBarComponent implements OnInit {
   loggedinUser: string | null = null;
   constructor(private alertify:AlertifyService) { }
-
   ngOnInit() {
   }
   loggedin(){
     this.loggedinUser=localStorage.getItem('userName');
     return this.loggedinUser;
-
   }
   onlogout(){
     localStorage.removeItem('token');
     localStorage.removeItem('userName');
     this.alertify.success('you are logged out');
   }
-
 }

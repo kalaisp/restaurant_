@@ -61,54 +61,10 @@ console.log('Primary photo:', this.property.photos?.find(p => p.isPrimary));
     this.propertyId = +this.route.snapshot.params['id'];
     this.route.data.subscribe((data) => {
       this.property = data['prp'] as property;
-      this.images = this.property.photos?.length
-      ? this.property.photos
-          .filter(photo => !photo.isPrimary)
-          .map(photo => photo.imageUrl)
-      : ['assets/images/internal.png'];
+      this.images = this.property.photos?.length? this.property.photos.filter(photo => !photo.isPrimary).map(photo => photo.imageUrl) : ['assets/images/internal.png'];
       this.galleryImages = this.getPropertyPhots();
-    //  console.log(this.property.photos);
       console.log(this.mainPhotoUrl);
-  });
-  this.property.age=this.housingService.getPropertAge(this.property.estPossessionOn);
-
-
-
+    });
+    this.property.age=this.housingService.getPropertAge(this.property.estPossessionOn);
+  }
 }
-
-
-
-}
-  //   )
-  // this.route.params.subscribe({
-  //   next: (params) => {
-  //     this.propertyId = +params['id'];
-  //     this.housingService.getProperty(this.propertyId).subscribe({
-  //       next: (data) => {
-  //         if (data) {
-  //           this.property = data;
-  //           this.cdr.detectChanges();
-  //         }
-  //          else {
-  //           // property not found — redirect
-  //           this.router.navigate(['/']);
-  //         }
-  //       },
-  //       error: (err) => {
-  //         console.error('Error fetching property:', err);
-  //         this.router.navigate(['/']);
-  //       }
-  //     });
-  //   },
-  //   error: (err) => {
-  //     console.error('Route params error:', err);
-  //     this.router.navigate(['/']);
-  //   }
-  // });
-
-  // onSelectNext(){
-  //   this.propertyId +=1;
-  //   this.router.navigate(['property-detail',this.propertyId])
-  // }
-
-

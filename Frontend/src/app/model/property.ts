@@ -10,8 +10,7 @@ export class property implements iPropertyBase{
   type!: string | null;
   bhk!: number | null;
   builtArea!: number | null;
-
-   AOP?:string;
+  AOP?:string;
   city!: string;
   image?: string;
   propertyTypeId!: number|null;

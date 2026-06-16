@@ -70,10 +70,8 @@ export class PhotoEditor implements OnInit {
   private uploadFile(file: File) {
     const formData = new FormData();
     formData.append('file', file);
-
     this.isUploading = true;
     this.uploadProgress = 0;
-
     this.http.post<photo>(
       `${this.baseUrl}/property/add/photo/${this.property.id}`,
       formData,

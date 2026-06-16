@@ -86,13 +86,10 @@ export class AddPropertyComponent implements OnInit {
     this.addPropertyForm.valueChanges.subscribe(data => {
       this.propertyView.bhk = data.BasicInfo.BHK;
       this.propertyView.name = data.BasicInfo.Name;
-      // this.propertyView.city = data.BasicInfo.City;
       this.propertyView.price = data.PriceInfo.Price;
       this.propertyView.sellRent = data.BasicInfo.SellRent;
       this.propertyView.security = data.PriceInfo.Security;
-this.propertyView.maintenance = data.PriceInfo.Maintenance;
-      // this.propertyView.propertyType = data.BasicInfo.PType;
-      // this.propertyView.furnishingType = data.BasicInfo.FType;
+      this.propertyView.maintenance = data.PriceInfo.Maintenance;
       this.propertyView.builtArea = data.PriceInfo.BuildArea;
       this.propertyView.maintenance = this.Maintenance.value;
       this.propertyView.builtArea = this.BuildArea.value;
@@ -128,7 +125,7 @@ this.propertyView.maintenance = data.PriceInfo.Maintenance;
 
       },
       error: (err) => {
-        console.error('City API error:', err); // ✅ see error
+        console.error('City API error:', err);
       }
     });
   }
@@ -300,14 +297,11 @@ this.propertyView.maintenance = data.PriceInfo.Maintenance;
     this.property.sellRent=+this.SellRent.value;
     this.property.bhk=this.BHK.value;
     this.property.propertyTypeId = this.PType.value;
-    // this.property.propertyType = this.PType.value;
     this.property.name = this.Name.value;
     this.property.CityId = this.City.value;
     this.property.furnishingTypeId = this.FType.value;
     this.property.propertyType = this.propertyTypes.find(x => x.id === this.PType.value)?.name ?? '';
-
     this.property.furnishingType = this.furnishTypes.find(x => x.id === this.FType.value)?.name ?? '';
-    // this.property.furnishingType = this.FType.value;
     this.property.price = this.Price.value;
     this.property.sellRent = this.SellRent.value;
     this.property.security = this.Security.value;
@@ -368,9 +362,6 @@ console.log("City Form Value:", this.City.value);
       }
         }
       );
-
-
-
     }
     else{
       this.alertfy.error('Please review the form and provide all vlaid');
