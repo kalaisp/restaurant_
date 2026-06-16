@@ -1,19 +1,19 @@
 import { iPropertyBase } from "./Ipropertybase";
-
+import { photo } from './photo';
 export class property implements iPropertyBase{
-  Id!: number | null;
-  Name!: string | null;
-  Price!: number | null;
-  SellRent!: number | null;
-  FType!: number | null;
-  PType!: number | null;
-  Type!: string | null;
-  BHK!: number | null;
-  BuildArea!: number | null;
-   Security?:string|null;
+  id!: number | null;
+  name!: string | null;
+  price!: number | null;
+  sellRent!: number | null;
+  furnishingType!: number | null;
+  propertyType!: number | null;
+  type!: string | null;
+  bhk!: number | null;
+  builtArea!: number | null;
+
    AOP?:string;
-  City!: string;
-  Image?: string;
+  city!: string;
+  image?: string;
   propertyTypeId!: number|null;
   furnishingTypeId!: number|null;
   carpetArea?: number|null;
@@ -22,15 +22,18 @@ export class property implements iPropertyBase{
   CityId!: number|null;
   floorNo?: string|null;
   totalFloors?: string|null;
-  RTM!: boolean|null;
+  readyToMove!: boolean|null;
   age?: string|null;
   mainEntrance?: string|null;
   security?: number|null;
-  gated?: number|null;
+  gated?: boolean|null;
   maintenance?: number|null;
   PossessionOn?: string|null;
+  estPossessionOn?: string | null;
   photo?: string|null;
   description?: string|null;
   postedon?:string|null;
   postedby?:string|null;
+  EstPossessionOn?:Date;
+  photos?:photo[];
 }

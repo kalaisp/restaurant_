@@ -9,11 +9,25 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { importProvidersFrom } from '@angular/core';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { HttpErrorInterceptorService } from './app/services/httperor-interceptor.service';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 bootstrapApplication(App, {
   providers: [
     provideRouter(routes),
      provideAnimations(),
-     BsDropdownModule,
-     TabsModule,ButtonsModule
+     importProvidersFrom(
+      BsDropdownModule,
+      TabsModule,
+      ButtonsModule
+    ),
+
+    provideHttpClient(withInterceptorsFromDi()),
+
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptorService,
+      multi: true
+    }
   ]
 });

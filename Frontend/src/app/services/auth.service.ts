@@ -1,41 +1,22 @@
 import { HttpClient } from '@angular/common/http';
-import { User } from './../model/user';
+// import { User } from './../model/user';
+import { environment } from '../../environments/environment';
+
 import { Injectable } from '@angular/core';
+import { UserForLogin,UserForRegister } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
+baseUrl=environment.baseUrl;
+// eslint-disable-next-line @angular-eslint/prefer-inject
 constructor(private http:HttpClient) { }
-authuser(user: any) {
-  //return this.http.post;
-  let UserArray: User[] = [];
-  if (localStorage.getItem('users')) {
-    UserArray = JSON.parse(
-      localStorage.getItem('users') || '[]'
-    );
-  }
-  return UserArray.find(
-    (p: User) =>
-      p.email === user.email &&
-      p.password === user.password
-  );
-  }
+authuser(user: UserForLogin) {
+  return this.http.post(this.baseUrl+'/account/login',user);
 
+  }
+  registeruser(user:UserForRegister){
+    return this.http.post(this.baseUrl+'/account/register',user);
+  }
 }
-// authuser(user: any) {
-
-//   let UserArray: User[] = [];
-//   if (localStorage.getItem('users')) {
-//     UserArray = JSON.parse(
-//       localStorage.getItem('users') || '[]'
-//     );
-//   }
-//   return UserArray.find(
-//     (p: User) =>
-//       p.username === user.username &&
-//       p.password === user.password
-//   );
-//   }
-// }

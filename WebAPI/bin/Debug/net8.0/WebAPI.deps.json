@@ -9,6 +9,7 @@
       "WebAPI/1.0.0": {
         "dependencies": {
           "AutoMapper": "16.1.1",
+          "CloudinaryDotNet": "1.29.1",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.2",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "8.0.11",
           "Microsoft.EntityFrameworkCore": "8.0.22",
@@ -60,6 +61,17 @@
           "lib/netstandard2.0/Azure.Identity.dll": {
             "assemblyVersion": "1.11.4.0",
             "fileVersion": "1.1100.424.31005"
+          }
+        }
+      },
+      "CloudinaryDotNet/1.29.1": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/CloudinaryDotNet.dll": {
+            "assemblyVersion": "1.29.1.0",
+            "fileVersion": "1.29.1.0"
           }
         }
       },
@@ -953,6 +965,13 @@
       "sha512": "sha512-Sf4BoE6Q3jTgFkgBkx7qztYOFELBCo+wQgpYDwal/qJ1unBH73ywPztIJKXBXORRzAeNijsuxhk94h0TIMvfYg==",
       "path": "azure.identity/1.11.4",
       "hashPath": "azure.identity.1.11.4.nupkg.sha512"
+    },
+    "CloudinaryDotNet/1.29.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JaV1JhjsvArTu1n7dzawflTGLqyNMGCEmGSNAiIlHOObqoIAh0cKIZOu5stG1CaPFgF3S1jv1Jn+vTmTqUvCNg==",
+      "path": "cloudinarydotnet/1.29.1",
+      "hashPath": "cloudinarydotnet.1.29.1.nupkg.sha512"
     },
     "Humanizer.Core/2.14.1": {
       "type": "package",

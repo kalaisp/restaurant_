@@ -1,4 +1,4 @@
 {
-    "appService.defaultWebAppToDeploy": "/subscriptions/d31b23af-9e97-4cc0-9ecf-0793571f0fee/resourceGroups/appsvc_windows_centralus/providers/Microsoft.Web/sites/restorent-api",
-    "appService.deploySubpath": "WebAPI\\bin\\Release\\net8.0\\publish\\runtimes"
+    "appService.defaultWebAppToDeploy": "/subscriptions/...",
+    "appService.deploySubpath": "WebAPI/mypublish"
 }

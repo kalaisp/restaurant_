@@ -6,7 +6,9 @@
     <UserSecretsId>60723812-eb93-4caf-80c2-879c0758c3a8</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+  <!-- <TargetFramework>net8.0</TargetFramework> -->
     <PackageReference Include="AutoMapper" Version="16.1.1" />
+    <PackageReference Include="CloudinaryDotNet" Version="1.29.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.22" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.22" />

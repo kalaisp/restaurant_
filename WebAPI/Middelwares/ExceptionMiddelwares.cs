@@ -42,7 +42,9 @@ namespace WebAPI.Middelwares
                 }
                 if (env.IsDevelopment())
                 {
-                    response=new ApiError((int)statusCode,ex.Message,ex.StackTrace.ToString());
+                    response = new ApiError((int)statusCode, 
+        ex.InnerException?.Message ?? ex.Message,ex.InnerException?.StackTrace ?? ex.StackTrace );
+                    // response=new ApiError((int)statusCode,ex.Message,ex.StackTrace.ToString());
                 }
                 else
                 {

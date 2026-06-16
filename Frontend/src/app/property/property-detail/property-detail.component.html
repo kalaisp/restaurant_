@@ -5,38 +5,38 @@
 
     <!-- Image -->
     <div class="detail-img-wrap">
-      <img *ngIf="property.Image"
-           src="assets/images/{{property.Image}}.png"
+      <img *ngIf="mainPhotoUrl"
+           src="{{mainPhotoUrl}}"
            alt="Property Image"
            class="detail-img">
-      <img *ngIf="!property.Image"
+      <img *ngIf="!mainPhotoUrl"
            src="assets/images/house_default.png"
            alt="Property Image"
            class="detail-img">
 
       <!-- Sale/Rent badge -->
       <span class="detail-badge">
-        <span *ngIf="property.SellRent == 1">For Sale</span>
-        <span *ngIf="property.SellRent == 2">For Rent</span>
+        <span *ngIf="property.sellRent == 1">For Sale</span>
+        <span *ngIf="property.sellRent == 2">For Rent</span>
       </span>
     </div>
 
     <!-- Property Info -->
     <div class="detail-info">
-      <h2 class="detail-name">{{ property.Name }}</h2>
+      <h2 class="detail-name">{{ property.name }}</h2>
       <p class="detail-sub">
-        {{ property.BHK }} BHK {{ property.PType }}
+        {{ property.bhk }} BHK {{ property.propertyType }}
         &nbsp;&#183;&nbsp;
-        <span class="detail-price">${{ property.Price }}</span>
+        <span class="detail-price">${{ property.price }}</span>
       </p>
-      <p class="detail-city">&#128205; {{ property.City }}</p>
+      <p class="detail-city">&#128205; {{ property.city }}</p>
 
       <hr class="detail-hr">
 
       <div class="detail-specs">
         <div class="spec-item">
           <span class="spec-label">Build Area</span>
-          <span class="spec-value">{{ property.BuildArea }} Sqft</span>
+          <span class="spec-value">{{ property.builtArea }} Sqft</span>
         </div>
         <div class="spec-item">
           <span class="spec-label">Carpet Area</span>
@@ -44,13 +44,13 @@
         </div>
         <div class="spec-item">
           <span class="spec-label">Furnishing</span>
-          <span class="spec-value">{{ property.FType }}</span>
+          <span class="spec-value">{{ property.furnishingType }}</span>
         </div>
         <div class="spec-item">
           <span class="spec-label">Available for</span>
           <span class="spec-value">
-            <span *ngIf="property.SellRent == 1">Purchase</span>
-            <span *ngIf="property.SellRent == 2">Rent</span>
+            <span *ngIf="property.sellRent === 1">Purchase</span>
+            <span *ngIf="property.sellRent === 2">Rent</span>
           </span>
         </div>
       </div>
@@ -77,7 +77,7 @@
 
             <div class="overview-item">
               <span class="ov-label">Project Name</span>
-              <span class="ov-value">{{ property.Name }}</span>
+              <span class="ov-value">{{ property.name }}</span>
             </div>
             <div class="overview-item">
               <span class="ov-label">Main Entrance</span>
@@ -98,15 +98,15 @@
             </div>
             <div class="overview-item">
               <span class="ov-label">Age of Property</span>
-              <span class="ov-value">{{ property.age || '—' }}</span>
+             <span class="ov-value">{{ property.age !== null ? property.age : '—' }}</span>
             </div>
             <div class="overview-item">
               <span class="ov-label">Security Deposit</span>
-              <span class="ov-value">{{ property.security || '—' }}</span>
+              <span class="ov-value">{{ property.security !== null ? property.security : '—' }}</span>
             </div>
             <div class="overview-item">
               <span class="ov-label">Possession</span>
-              <span class="ov-value">{{ property.PossessionOn || '—' }}</span>
+               <span class="ov-value">{{ property.estPossessionOn ?? '—' }}</span>
             </div>
             <div class="overview-item">
               <span class="ov-label">Maintenance</span>
@@ -135,7 +135,7 @@
               {{ property.address2 }}
             </p>
             <p class="addr-line">
-              &#128205; <strong>{{ property.City }}</strong>
+              &#128205; <strong>{{ property.city }}</strong>
             </p>
           </div>
         </div>
@@ -165,7 +165,10 @@
           </div>
         </div>
       </tab>
-
+      <tab heading="Upload/EditPhotos">
+      <app-photo-editor [property]="property"></app-photo-editor>
+        <!-- <app-photo-editor [property]="property"></app-photo-editor> -->
+      </tab>
       <!-- CONTACT TAB -->
       <tab heading="Contact">
         <div class="tab-content-wrap">

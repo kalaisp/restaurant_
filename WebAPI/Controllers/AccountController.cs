@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using WebAPI.Dto;
+using WebAPI.Errors;
 using WebAPI.Interfaces;
 using WebAPI.Models;
 
@@ -25,9 +26,13 @@ namespace WebAPI.Controllers
         public async Task<IActionResult>Login(LoginReqdto loginreq)
         {
             var user =await uow.userRepository.Authenticate(loginreq.Username,loginreq.Password);
+            ApiError apiError=new ApiError();
             if (user == null)
             {
-                return Unauthorized();
+                apiError.ErrorCode=Unauthorized().StatusCode;
+               apiError.ErrorMessage = "Invalid username or password";
+                apiError.ErrorDetails = "This error appears when the provided user ID or password does not exist";
+                return Unauthorized(apiError);
             }
             var loginRes=new LoginResDto();
             loginRes.UserName=user.Username;
@@ -38,8 +43,22 @@ namespace WebAPI.Controllers
         [AllowAnonymous]
         public async Task<IActionResult>Register(LoginReqdto loginreq)
         {
+              ApiError apierror=new ApiError();
+            if(string.IsNullOrEmpty(loginreq.Username.Trim())||
+            string.IsNullOrEmpty(loginreq.Password.Trim()))
+            {
+                 apierror.ErrorCode=BadRequest().StatusCode;
+                apierror.ErrorMessage="User name or password canot be blank";
+                return BadRequest(apierror);
+            }
+          
             if(await uow.userRepository.UserAlreadyExists(loginreq.Username))
-                return BadRequest("User already exists");
+            {
+                apierror.ErrorCode=BadRequest().StatusCode;
+                apierror.ErrorMessage="User already exists,please try different username";
+                return BadRequest(apierror);
+            }
+               
                 uow.userRepository.Register(loginreq.Username,loginreq.Password);
                 await uow.SaveAsync();
                 return StatusCode(201);

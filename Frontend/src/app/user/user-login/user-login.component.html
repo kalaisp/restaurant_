@@ -26,22 +26,22 @@
 
       <!-- Username/Email -->
       <div class="field">
-        <label>Email address</label>
+        <label>User Name</label>
         <div class="input-wrap">
-          <span class="lead-icon">&#9993;</span>
+          <span class="lead-icon">&#128100;</span>
           <input
             class="form-control"
             type="text"
-             placeholder="Enter your password"
+            placeholder="Enter Username"
             required
             ngModel
-            name="email"
-            #email="ngModel">
+            name="username"
+            #username="ngModel">
         </div>
-        @if(email.invalid && (email.touched || loginSubmited)) {
+        @if(username.invalid && (username.touched || loginSubmited)) {
       <span class="error-block">
-        @if(email.errors?.['required']) {
-          Email is required
+        @if(username.errors?.['required']) {
+          username is required
         }
 
       </span>

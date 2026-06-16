@@ -51,6 +51,7 @@ export class PropertyListComponent implements OnInit {
       }
     });
   }
+
   onCityFilter(){
     this.searchCity=this.City;
   }

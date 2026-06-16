@@ -3,24 +3,24 @@
   <div class="image-container">
 
     <!-- Images unchanged -->
-    <img *ngIf="property.Image"
-         src="assets/images/{{property.Image}}.png"
+    <img *ngIf="property.photo"
+         src="{{property.photo}}"
          alt="House Image"
          class="property-image">
-    <img *ngIf="!property.Image"
+    <img *ngIf="!property.photo"
          src="assets/images/house_default.png"
          alt="House Image"
          class="property-image">
 
     <!-- Sell/Rent badge -->
     <span class="sell-badge">
-      {{ property.SellRent === 1 ? 'For Sale' : 'For Rent' }}
+      {{ property.sellRent === 1 ? 'For Sale' : 'For Rent' }}
     </span>
 
     <!-- Overlay with buttons unchanged -->
     <div *ngIf="!hideIcones" class="image-overlay">
       <button class="overlay-btn"
-              routerLink="/property-details/{{property.Id}}">
+              routerLink="/property-details/{{property.id}}">
         <i class="far fa-edit"></i> View
       </button>
       <button class="overlay-btn">
@@ -34,21 +34,23 @@
 
     <!-- BHK + Type -->
     <h5 class="prop-title">
-      {{ property.BHK }} BHK <span>{{ property.PType }}</span>
+      {{ property.bhk }} BHK <span>{{ property.propertyType }}</span>
     </h5>
 
     <!-- Location -->
     <p class="prop-location">
       <span class="loc-icon">&#128205;</span>
-      {{ property.Name }}<span *ngIf="property.Name">,</span>
-      {{ property.City }}
+      {{ property.name }}<span *ngIf="property.name">,</span>
+      {{ property.city }}
     </p>
 
     <!-- Furnish -->
     <p class="prop-furnish">
-      {{ property.FType }}
-      <span *ngIf="property.FType !== null">Furnished</span>
-      &nbsp;&#183;&nbsp; Ready to Move
+      {{ property.furnishingType }}
+      <span *ngIf="property.furnishingType !== null">Furnished</span>
+      &nbsp;&#183;&nbsp;
+      <span *ngIf="property.readyToMove">|Ready to Move</span>
+      <span *ngIf="!property.readyToMove">|Possession:{{property.estPossessionOn|date}}</span>
     </p>
 
     <hr class="divider">
@@ -57,11 +59,11 @@
     <div class="prop-meta">
       <div class="meta-item">
         <span class="meta-label">Price</span>
-        <span class="meta-value">{{ property.Price }} INR</span>
+        <span class="meta-value">{{ property.price }} INR</span>
       </div>
       <div class="meta-item">
         <span class="meta-label">Area</span>
-        <span class="meta-value">{{ property.BuildArea }} Sq Ft</span>
+        <span class="meta-value">{{ property.builtArea }} Sq Ft</span>
       </div>
     </div>
 

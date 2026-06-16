@@ -16,8 +16,18 @@ namespace WebAPI.Data
         public IUserRepository userRepository=>
             new UserRepository(dc);
         public IunitOfWork iunitOfWork => throw new NotImplementedException();
-
+        // public IFurnishingTypeRepository FurnishingTypeRepository =>         
+        //             new FurnishingTypeRepository(dc);
         public IUserRepository iuserRepository => throw new NotImplementedException();
+
+        public IPropertyRepository propertyRepository => 
+         new PropertyRepository(dc);
+
+        public IPropertyTypeRepository propertyTypeRepository => 
+        new PropertyTypeRepository(dc);
+
+        public IFurnishingTypeRepository FurnishingTypeRepository => 
+         new FurnishingTypeRepository(dc);
 
         public async Task<bool> SaveAsync()
         {

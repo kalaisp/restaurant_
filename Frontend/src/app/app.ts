@@ -12,12 +12,15 @@ import { PropertyDetailComponent } from './property/property-detail/property-det
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserRegisterComponent } from './user/user-register/user-register.component';
-import { UserServiceService } from './services/user-service.service';
+//  import { UserServiceService } from './services/user-service.service';
 import { AlertifyService } from './services/alertify.service';
 import { AuthService } from './services/auth.service';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FilterPipe } from './pipes/filter.pipe';
 import { SortPipe } from './pipes/sort.pipe';
+// import { FileUploadModule} from 'ng2-file-upload';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpErrorInterceptorService } from './services/httperor-interceptor.service';
 const approutes:Routes=[
   {path:'add-property',component:AddPropertyComponent}
 ];
@@ -27,8 +30,8 @@ const approutes:Routes=[
   standalone: true,
   imports: [RouterOutlet, CommonModule, NavBarComponent,PropertyCardComponent,
             PropertyListComponent,AddPropertyComponent,PropertyDetailComponent,FormsModule,UserLoginComponent,
-            ReactiveFormsModule,BsDropdownModule ,FilterPipe,SortPipe],
-  providers:[UserServiceService,AlertifyService,AuthService,PropertyDetailResolverService],
+            ReactiveFormsModule,BsDropdownModule,FilterPipe,SortPipe],
+  providers:[AlertifyService,AuthService,PropertyDetailResolverService],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })

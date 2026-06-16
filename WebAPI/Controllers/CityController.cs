@@ -49,7 +49,7 @@ namespace WebAPI.Controllers
             cityFromDb.LastUpdatedBy=1;
             cityFromDb.LastUpdatedOn=DateTime.Now;
             mapper.Map(cityDto,cityFromDb);
-            throw new Exception("Some unkown error occurired");
+            // throw new Exception("Some unkown error occurired");
             await uow.SaveAsync();
             return StatusCode(200);
         }

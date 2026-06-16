@@ -1,3 +1,4 @@
+import {  UserForLogin } from './../../model/user';
 import { Router } from '@angular/router';
 import { routes } from './../../app.routes';
 import { AuthService } from './../../services/auth.service';
@@ -24,18 +25,30 @@ loginSubmited = false;
   }
   onLogin(loginForm: NgForm) {
     this.loginSubmited = true;
-     const token = this.authService.authuser(
-      loginForm.value
-    );
-    if (token) {
-      localStorage.setItem('token',token.username)
+      this.authService.authuser(loginForm.value).subscribe(
+      (response:any)=>{
+        console.log(response);
+        const user=response;
+          localStorage.setItem('token',user.token);
+              localStorage.setItem('userName',user.userName)
       this.alertify.success('Login Successful');
       this.router.navigate(['/']);
-    }
-    else{
-      this.alertify.error('user id or password is wrong');
-       loginForm.reset();
-      this.loginSubmited = false;
-    }
+      },error=>{
+        console.log(error);
+      // ✅ Safely extract the error message string
+      const message = error?.error?.errorMessage || 'Invalid username or password';
+      this.alertify.error(message);
+      }
+     );
+    // if (token) {
+    //   localStorage.setItem('token',token.username)
+    //   this.alertify.success('Login Successful');
+    //   this.router.navigate(['/']);
+    // }
+    // else{
+    //   this.alertify.error('user id or password is wrong');
+    //    loginForm.reset();
+    //   this.loginSubmited = false;
+    // }
   }
 }
