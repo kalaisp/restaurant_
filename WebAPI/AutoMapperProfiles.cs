@@ -33,20 +33,31 @@ Console.WriteLine($"Connection string: {build.ConnectionString}");
 Console.WriteLine($"Password is empty: {string.IsNullOrEmpty(build.Password)}");
 
 // Register DbContext WITH retry
-builder.Services.AddDbContext<DataContext>(opt => {
-    opt.UseSqlServer(build.ConnectionString, sqlOptions => {
-        sqlOptions.EnableRetryOnFailure(
+// builder.Services.AddDbContext<DataContext>(opt => {
+//     opt.UseSqlServer(build.ConnectionString, sqlOptions => {
+//         sqlOptions.EnableRetryOnFailure(
+//             maxRetryCount: 5,
+//             maxRetryDelay: TimeSpan.FromSeconds(30),
+//             errorNumbersToAdd: null
+//         );
+//     });
+// });
+builder.Services.AddDbContext<DataContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        sqlOptions => sqlOptions.EnableRetryOnFailure(
             maxRetryCount: 5,
             maxRetryDelay: TimeSpan.FromSeconds(30),
             errorNumbersToAdd: null
-        );
-    });
-});
+        )
+    )
+);
 // ✅ Add CORS for Angular
 builder.Services.AddCors(options => {
     options.AddPolicy("AllowAngular", policy => {
         policy.WithOrigins("http://localhost:4200",
-        "https://restorent-angular.web.app",
+        "https://restorent-angular.web.app", 
+        "https://thankful-field-0a9a0990f.7.azurestaticapps.net",
             "https://restorent-angular-api.web.app","http://localhost:81", 
         "https://restorent-api-fdhnb3ahavf5c3cq.centralus-01.azurewebsites.net")
               .AllowAnyHeader()
@@ -74,7 +85,7 @@ var app = builder.Build();
 app.UseCors("AllowAngular");
 app.UseHsts();
 app.UseHttpsRedirection();
-
+app.UseCors("AllowAll"); 
 app.UseCors("AllowFirebase");
 app.UseDefaultFiles();
 app.UseStaticFiles();               

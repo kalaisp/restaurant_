@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PJTA71nf0H8=",
+  "dgSpecHash": "/E9PGsPK/K4=",
   "success": true,
-  "projectFilePath": "D:\\restorent\\WebAPI\\WebAPI.csproj",
+  "projectFilePath": "D:\\restorent\\webapi\\WebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DELL\\.nuget\\packages\\automapper\\16.1.1\\automapper.16.1.1.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",

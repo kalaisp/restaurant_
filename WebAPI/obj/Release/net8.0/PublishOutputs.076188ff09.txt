@@ -23,6 +23,7 @@ D:\restorent\webapi\mypublish\WebAPI.pdb
 D:\restorent\webapi\mypublish\AutoMapper.dll
 D:\restorent\webapi\mypublish\Azure.Core.dll
 D:\restorent\webapi\mypublish\Azure.Identity.dll
+D:\restorent\webapi\mypublish\CloudinaryDotNet.dll
 D:\restorent\webapi\mypublish\Humanizer.dll
 D:\restorent\webapi\mypublish\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\restorent\webapi\mypublish\Microsoft.AspNetCore.JsonPatch.dll

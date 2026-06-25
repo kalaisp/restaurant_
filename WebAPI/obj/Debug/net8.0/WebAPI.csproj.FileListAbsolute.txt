@@ -191,3 +191,10 @@ D:\restorent\webapi\obj\Debug\net8.0\WebAPI.pdb
 D:\restorent\webapi\obj\Debug\net8.0\WebAPI.genruntimeconfig.cache
 D:\restorent\webapi\obj\Debug\net8.0\ref\WebAPI.dll
 D:\restorent\webapi\bin\Debug\net8.0\CloudinaryDotNet.dll
+D:\restorent\webapi\bin\Debug\net8.0\mypublish\publish\web.config
+D:\restorent\webapi\bin\Debug\net8.0\mypublish\publish\appsettings.Development.json
+D:\restorent\webapi\bin\Debug\net8.0\mypublish\publish\appsettings.json
+D:\restorent\webapi\bin\Debug\net8.0\mypublish\publish\launch.json
+D:\restorent\webapi\bin\Debug\net8.0\mypublish\publish\WebAPI.deps.json
+D:\restorent\webapi\bin\Debug\net8.0\mypublish\publish\WebAPI.runtimeconfig.json
+D:\restorent\webapi\bin\Debug\net8.0\mypublish\publish\WebAPI.staticwebassets.endpoints.json
