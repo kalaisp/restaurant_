@@ -59,7 +59,8 @@ builder.Services.AddCors(options => {
         "https://restorent-angular.web.app", 
         "https://thankful-field-0a9a0990f.7.azurestaticapps.net",
             "https://restorent-angular-api.web.app","http://localhost:81", 
-        "https://restorent-api-fdhnb3ahavf5c3cq.centralus-01.azurewebsites.net")
+        "https://restorent-api-fdhnb3ahavf5c3cq.centralus-01.azurewebsites.net"
+        )
               .AllowAnyHeader()
         .AllowAnyMethod()
         .AllowCredentials();
