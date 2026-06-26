@@ -1,4 +1,5 @@
 {
     "appService.defaultWebAppToDeploy": "/subscriptions/...",
-    "appService.deploySubpath": "WebAPI/mypublish"
+    // "appService.deploySubpath": "WebAPI/mypublish"
+    "appService.deploySubpath": "WebAPI/publish"
 }
