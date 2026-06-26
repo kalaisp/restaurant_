@@ -1,0 +1,187 @@
+<div class="detail-wrap">
+
+  <!-- LEFT PANEL -->
+  <div class="detail-left">
+
+    <!-- Image -->
+    <div class="detail-img-wrap">
+      <img *ngIf="mainPhotoUrl"
+           src="{{mainPhotoUrl}}"
+           alt="Property Image"
+           class="detail-img">
+      <img *ngIf="!mainPhotoUrl"
+           src="assets/images/house_default.png"
+           alt="Property Image"
+           class="detail-img">
+
+      <!-- Sale/Rent badge -->
+      <span class="detail-badge">
+        <span *ngIf="property.sellRent == 1">For Sale</span>
+        <span *ngIf="property.sellRent == 2">For Rent</span>
+      </span>
+    </div>
+
+    <!-- Property Info -->
+    <div class="detail-info">
+      <h2 class="detail-name">{{ property.name }}</h2>
+      <p class="detail-sub">
+        {{ property.bhk }} BHK {{ property.propertyType }}
+        &nbsp;&#183;&nbsp;
+        <span class="detail-price">${{ property.price }}</span>
+      </p>
+      <p class="detail-city">&#128205; {{ property.city }}</p>
+
+      <hr class="detail-hr">
+
+      <div class="detail-specs">
+        <div class="spec-item">
+          <span class="spec-label">Build Area</span>
+          <span class="spec-value">{{ property.builtArea }} Sqft</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Carpet Area</span>
+          <span class="spec-value">{{ property.carpetArea }} Sqft</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Furnishing</span>
+          <span class="spec-value">{{ property.furnishingType }}</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Available for</span>
+          <span class="spec-value">
+            <span *ngIf="property.sellRent === 1">Purchase</span>
+            <span *ngIf="property.sellRent === 2">Rent</span>
+          </span>
+        </div>
+      </div>
+
+      <hr class="detail-hr">
+
+      <!-- Action Buttons -->
+      <div class="detail-actions">
+        <button class="btn-like">&#9825; Like</button>
+        <button class="btn-message">&#9993; Message</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="detail-right">
+    <tabset class="detail-tabs">
+
+      <!-- OVERVIEW TAB -->
+      <tab heading="Overview">
+        <div class="tab-content-wrap">
+          <h4 class="tab-title">Overview</h4>
+          <div class="overview-grid">
+
+            <div class="overview-item">
+              <span class="ov-label">Project Name</span>
+              <span class="ov-value">{{ property.name }}</span>
+            </div>
+            <div class="overview-item">
+              <span class="ov-label">Main Entrance</span>
+              <span class="ov-value">{{ property.mainEntrance || '—' }}</span>
+            </div>
+            <div class="overview-item">
+              <span class="ov-label">Floor Number</span>
+              <span class="ov-value">
+                {{ property.floorNo || '—' }} of {{ property.totalFloors || '—' }}
+              </span>
+            </div>
+            <div class="overview-item">
+              <span class="ov-label">Gated Community</span>
+              <span class="ov-value">
+                <span *ngIf="property.gated" class="badge-yes">Yes</span>
+                <span *ngIf="!property.gated" class="badge-no">No</span>
+              </span>
+            </div>
+            <div class="overview-item">
+              <span class="ov-label">Age of Property</span>
+             <span class="ov-value">{{ property.age !== null ? property.age : '—' }}</span>
+            </div>
+            <div class="overview-item">
+              <span class="ov-label">Security Deposit</span>
+              <span class="ov-value">{{ property.security !== null ? property.security : '—' }}</span>
+            </div>
+            <div class="overview-item">
+              <span class="ov-label">Possession</span>
+               <span class="ov-value">{{ property.estPossessionOn ?? '—' }}</span>
+            </div>
+            <div class="overview-item">
+              <span class="ov-label">Maintenance</span>
+              <span class="ov-value">{{ property.maintenance || '—' }}</span>
+            </div>
+
+            <!-- About full width -->
+            <div class="overview-item full-width">
+              <span class="ov-label">About Property</span>
+              <span class="ov-value about-text">
+                {{ property.description || 'No description provided.' }}
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </tab>
+
+      <!-- ADDRESS TAB -->
+      <tab heading="Address">
+        <div class="tab-content-wrap">
+          <h4 class="tab-title">Address</h4>
+          <div class="address-card">
+            <p class="addr-line">&#127968; {{ property.address }}</p>
+            <p class="addr-line" *ngIf="property.address2">
+              {{ property.address2 }}
+            </p>
+            <p class="addr-line">
+              &#128205; <strong>{{ property.city }}</strong>
+            </p>
+          </div>
+        </div>
+      </tab>
+
+      <!-- PHOTOS TAB -->
+      <tab heading="Photos">
+        <div class="tab-content-wrap">
+          <div class="main-image-wrapper position-relative">
+            <img [src]="selectedImage"
+                 class="w-100 main-photo">
+            <button class="arrow arrow-left"
+                    (click)="changeSlide(-1)">&#8249;</button>
+            <button class="arrow arrow-right"
+                    (click)="changeSlide(1)">&#8250;</button>
+            <div class="counter">
+              {{ selectedIndex + 1 }} / {{ images.length }}
+            </div>
+          </div>
+          <div class="thumbnails">
+            <div *ngFor="let img of images; let i = index"
+                 class="thumb"
+                 [class.active]="i === selectedIndex"
+                 (click)="goTo(i)">
+              <img [src]="img">
+            </div>
+          </div>
+        </div>
+      </tab>
+      <tab heading="Upload/EditPhotos">
+      <app-photo-editor [property]="property"></app-photo-editor>
+        <!-- <app-photo-editor [property]="property"></app-photo-editor> -->
+      </tab>
+      <!-- CONTACT TAB -->
+      <tab heading="Contact">
+        <div class="tab-content-wrap">
+          <h4 class="tab-title">Contact Details</h4>
+
+
+            <h1>Contact Detail</h1>
+          This should be restricted area and only registered user should be able to see seller contact details
+
+        </div>
+      </tab>
+
+    </tabset>
+  </div>
+
+</div>

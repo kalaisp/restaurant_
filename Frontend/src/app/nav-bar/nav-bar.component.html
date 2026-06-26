@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">Restorent</a>
+    <button class="navbar-toggler" type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" [routerLinkActiveOptions]="{exact:true}"
+             routerLinkActive="active" routerLink="/">Buy</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active"
+             routerLink="/rent-property">Rent</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active"
+             routerLink="/add-property">List Of Property(Free)</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ms-auto">
+        <li *ngIf="!loggedin()" class="nav-item">
+          <a class="nav-link" routerLink="user/register"
+             routerLinkActive="active"><i class="fa-solid fa-user-plus"></i>Register</a>
+        </li>
+        <li *ngIf="!loggedin()" class="nav-item">
+          <a class="nav-link" routerLink="user/login"
+             routerLinkActive="active"> <i class="fa-solid fa-right-to-bracket"></i>Login</a>
+        </li>
+        <li *ngIf="loggedin()" class="nav-item" dropdown>
+          <a href="#" class="nav-link dropdown-toggle text-light" dropdownToggle (click)="false">
+            Welcome {{loggedinUser}}
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" *dropdownMenu>
+            <li>
+              <a href="#" class="dropdown-item">
+                <i class="fas fa-tachometer-alt"></i> View Dashboard
+              </a>
+            </li>
+            <li>
+              <a href="#" class="dropdown-item">
+                <i class="far fa-user-circle"></i> My Profile
+              </a>
+            </li>
+            <li>
+              <a href="#" class="dropdown-item">
+                <i class="fas fa-key"></i> Change Password
+              </a>
+            </li>
+            <li>
+              <a (click)="onlogout()" class="dropdown-item" style="cursor:pointer">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

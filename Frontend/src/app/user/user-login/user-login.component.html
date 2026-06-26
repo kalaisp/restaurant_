@@ -1,0 +1,109 @@
+<div class="wrap">
+  <div class="left">
+    <div>
+      <div class="brand">Resto<span>rent</span></div>
+      <p class="tagline">Your trusted platform for buying, renting and listing properties.</p>
+    </div>
+    <div class="welcome-block">
+      <p class="welcome-title">Welcome back!</p>
+      <p class="welcome-text">Sign in to access your saved properties, listings, and messages.</p>
+      <div class="features">
+        <div class="feat"><div class="feat-dot"></div><span>View your saved & favourite properties</span></div>
+        <div class="feat"><div class="feat-dot"></div><span>Manage your active listings</span></div>
+        <div class="feat"><div class="feat-dot"></div><span>Chat with buyers and renters</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="right">
+    <p class="form-title" >Login Form</p>
+
+
+
+
+    <!-- ✅ Exact same form logic as original — nothing changed -->
+    <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+
+      <!-- Username/Email -->
+      <div class="field">
+        <label>User Name</label>
+        <div class="input-wrap">
+          <span class="lead-icon">&#128100;</span>
+          <input
+            class="form-control"
+            type="text"
+            placeholder="Enter Username"
+            required
+            ngModel
+            name="username"
+            #username="ngModel">
+        </div>
+        @if(username.invalid && (username.touched || loginSubmited)) {
+      <span class="error-block">
+        @if(username.errors?.['required']) {
+          username is required
+        }
+
+      </span>
+    }
+        <!-- <span *ngIf="email.invalid && (email.touched || loginSubmited)"
+              class="error-block">
+          <span *ngIf="email.errors?.['required']">Email is required</span>
+        </span> -->
+      </div>
+
+      <!-- Password -->
+      <div class="field">
+        <label>Password</label>
+        <div class="input-wrap">
+          <span class="lead-icon">&#128274;</span>
+          <input
+            class="form-control"
+            [type]="showPassword ? 'text' : 'password'"
+            placeholder="Enter your password"
+            required
+            ngModel
+            name="password"
+            #password="ngModel">
+          <button type="button" class="toggle-pw"
+                  (click)="showPassword = !showPassword">
+            {{ showPassword ? '&#128065;' : '&#128064;' }}
+          </button>
+        </div>
+         @if(password.invalid && (password.touched || loginSubmited)) {
+      <span class="error-block">
+        @if(password.errors?.['required']) {
+          Password is required
+        }
+      </span>
+    }
+        <!-- <span *ngIf="password.invalid && (password.touched || loginSubmited)"
+              class="error-block">
+          <span *ngIf="password.errors?.['required']">Password is required</span>
+        </span> -->
+      </div>
+
+      <!-- Submit -->
+      <button
+        type="submit"
+        class="submit-btn"
+        [disabled]="!loginForm.valid">
+        <i class="fas fa-right-to-bracket"></i>
+        Sign in to account
+      </button>
+
+      <!-- Cancel -->
+      <button
+        type="button"
+        class="btn-cancel"
+        (click)="loginForm.reset()">
+        Cancel
+      </button>
+
+    </form>
+
+    <div class="register-row">
+      Don't have an account? <a routerLink="/user/register">Register for free</a>
+    </div>
+  </div>
+</div>

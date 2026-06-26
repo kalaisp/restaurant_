@@ -1,0 +1,118 @@
+<div class="wrap">
+  <div class="left">
+    <div>
+      <div class="brand">Resto<span>rent</span></div>
+      <p class="tagline">Find your perfect home or list your property — all in one place.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-icon"><i class="ti ti-home"></i></div>
+        <div class="step-text"><strong>Browse properties</strong>Buy or rent from verified listings</div>
+      </div>
+      <div class="step">
+        <div class="step-icon"><i class="ti ti-list-check"></i></div>
+        <div class="step-text"><strong>List for free</strong>Post your property in minutes</div>
+      </div>
+      <div class="step">
+        <div class="step-icon"><i class="ti ti-shield-check"></i></div>
+        <div class="step-text"><strong>Trusted & secure</strong>Verified users and safe transactions</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="right">
+    <p class="form-title">Create account</p>
+     <p class="form-sub">Already have one? <a href="/user/login">Sign in</a></p>
+
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <!-- Name Row -->
+      <div class="row2">
+        <div class="field">
+          <label>Name</label>
+          <input type="text" class="form-control" formControlName="username"
+             placeholder="username">
+            <span *ngIf="!username.valid && (username.touched||userSubmited)" class="error-block">
+              please provide name
+            </span>
+        </div>
+
+        <div class="field">
+          <label>Mobile</label>
+          <input type="tel" class="form-control"
+                 formControlName="mobile"  placeholder="Mobile">
+          <span *ngIf="!mobile.valid && (mobile.touched || userSubmited)"
+                class="error-block">
+            <span *ngIf="mobile.hasError('required')">Mobile number required</span>
+            <span *ngIf="mobile.hasError('pattern')">Enter valid mobile number</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="field">
+        <label>Email address</label>
+        <input type="email" class="form-control"
+               formControlName="email"  placeholder="Email"
+               >
+        <span *ngIf="!email.valid && (email.touched || userSubmited)"
+              class="error-block">
+          <span *ngIf="email.hasError('required')">Please provide email</span>
+          <span *ngIf="email.hasError('email')">Please provide valid email</span>
+        </span>
+      </div>
+
+      <!-- Password -->
+      <div class="field">
+        <label>Password</label>
+        <input type="password" class="form-control"
+               formControlName="password"
+               placeholder="Create a strong password"
+               >
+        <div class="strength-bar">
+          <span id="s1"></span><span id="s2"></span>
+          <span id="s3"></span><span id="s4"></span>
+        </div>
+        <!-- <div class="strength-label" id="sLabel">Enter a password</div> -->
+        <span *ngIf="!password.valid && (password.touched || userSubmited)"
+              class="error-block">
+          <span *ngIf="password?.errors?.['required']">Please provide password</span>
+          <span *ngIf="password?.errors?.['minlength']">
+            Password must be at least 8 characters
+          </span>
+        </span>
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="field">
+        <label>Confirm Password</label>
+        <input type="password" class="form-control"
+               formControlName="confirmpassword"  placeholder="confirmpassword">
+        <span *ngIf="registrationForm?.errors?.['notmatched']
+                     && (confirmpassword?.dirty || userSubmited)"
+              class="error-block">
+          Passwords do not match
+        </span>
+      </div>
+
+      <!-- Terms -->
+      <div class="terms">
+        <input type="checkbox" id="terms">
+        <span>I agree to the
+          <a href="#">Terms of Service</a> and
+          <a href="#">Privacy Policy</a>
+        </span>
+      </div>
+
+      <!-- Buttons -->
+      <button type="submit" class="submit-btn">
+        <i class="ti ti-user-plus"></i>
+        Create my account
+      </button>
+
+      <button type="reset" class="btn btn-secondary w-100 mt-2">
+        Cancel
+      </button>
+
+    </form>
+  </div>
+</div>

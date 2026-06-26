@@ -1,0 +1,48 @@
+{
+  "name": "frontend",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "lint": "ng lint"
+  },
+  "private": true,
+  "packageManager": "npm@11.9.0",
+  "dependencies": {
+    "@angular/animations": "^21.2.13",
+    "@angular/common": "^21.2.0",
+    "@angular/compiler": "^21.2.0",
+    "@angular/core": "^21.2.0",
+    "@angular/forms": "^21.2.0",
+    "@angular/platform-browser": "^21.2.0",
+    "@angular/router": "^21.2.0",
+    "@kolkov/ngx-gallery": "^2.0.1",
+    "@types/jquery": "^4.0.0",
+    "@types/slick-carousel": "^1.6.40",
+    "alertifyjs": "^1.14.0",
+    "bootstrap": "^5.3.8",
+    "jquery": "^4.0.0",
+    "ngx-bootstrap": "^21.2.0",
+    "ngx-slick-carousel": "^20.0.0",
+    "rxjs": "~7.8.0",
+    "slick-carousel": "^1.8.1",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^21.2.11",
+    "@angular/cli": "^21.2.11",
+    "@angular/compiler-cli": "^21.2.0",
+    "@eslint/js": "^10.0.1",
+    "@types/jasmine": "^6.0.0",
+    "angular-eslint": "21.4.0",
+    "eslint": "^10.4.1",
+    "jsdom": "^28.0.0",
+    "prettier": "^3.8.1",
+    "typescript": "~5.9.2",
+    "typescript-eslint": "8.59.2",
+    "vitest": "^4.1.7"
+  }
+}

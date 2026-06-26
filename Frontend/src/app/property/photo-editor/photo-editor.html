@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-2 mb-3" *ngFor="let photo of property.photos">
+    <img src="{{photo.imageUrl}}" alt="{{photo.imageUrl}}" class="img-thumbnail p-1">
+    <div class="text-center">
+      <button class="btn btn-sm"
+      [disabled]="photo.isPrimary"
+      [ngClass]='photo.isPrimary?"btn-success active":"btn-outline-success"'
+      (click)="setPrimaryPhoto(property.id!,photo)">
+        Main
+      </button>
+      <button class="btn btn-sm btn-danger"[disabled]="photo.isPrimary"
+      (click)="deletePhoto(property.id!,photo)"><i class="fa fa-trash"></i></button>
+    </div>
+  </div>
+  <div class="dropzone" [class.drag-over]="isDragOver" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" (drop)="onDrop($event)">
+  <input
+    type="file"
+    id="fileInput"
+    multiple
+    accept="image/*"
+    (change)="onFileSelected($event)"
+    style="display:none"
+  />
+  <label for="fileInput" style="cursor:pointer; display:block; text-align:center;">
+    <div *ngIf="!isUploading">
+      ⬆️ Drop Photo Here<br />
+      <small>or click to browse</small>
+    </div>
+    <div *ngIf="isUploading">
+      Uploading... {{ uploadProgress }}%
+    </div>
+  </label>
+</div>
+</div>

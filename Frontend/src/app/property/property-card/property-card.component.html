@@ -1,0 +1,71 @@
+<div class="property-card" *ngIf="property">
+
+  <div class="image-container">
+
+    <!-- Images unchanged -->
+    <img *ngIf="property.photo"
+         src="{{property.photo}}"
+         alt="House Image"
+         class="property-image">
+    <img *ngIf="!property.photo"
+         src="assets/images/house_default.png"
+         alt="House Image"
+         class="property-image">
+
+    <!-- Sell/Rent badge -->
+    <span class="sell-badge">
+      {{ property.sellRent === 1 ? 'For Sale' : 'For Rent' }}
+    </span>
+
+    <!-- Overlay with buttons unchanged -->
+    <div *ngIf="!hideIcones" class="image-overlay">
+      <button class="overlay-btn"
+              routerLink="/property-details/{{property.id}}">
+        <i class="far fa-edit"></i> View
+      </button>
+      <button class="overlay-btn">
+        <i class="far fa-address-book"></i> Contact
+      </button>
+    </div>
+
+  </div>
+
+  <div class="card-body">
+
+    <!-- BHK + Type -->
+    <h5 class="prop-title">
+      {{ property.bhk }} BHK <span>{{ property.propertyType }}</span>
+    </h5>
+
+    <!-- Location -->
+    <p class="prop-location">
+      <span class="loc-icon">&#128205;</span>
+      {{ property.name }}<span *ngIf="property.name">,</span>
+      {{ property.city }}
+    </p>
+
+    <!-- Furnish -->
+    <p class="prop-furnish">
+      {{ property.furnishingType }}
+      <span *ngIf="property.furnishingType !== null">Furnished</span>
+      &nbsp;&#183;&nbsp;
+      <span *ngIf="property.readyToMove">|Ready to Move</span>
+      <span *ngIf="!property.readyToMove">|Possession:{{property.estPossessionOn|date}}</span>
+    </p>
+
+    <hr class="divider">
+
+    <!-- Price & Area -->
+    <div class="prop-meta">
+      <div class="meta-item">
+        <span class="meta-label">Price</span>
+        <span class="meta-value">{{ property.price }} INR</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Area</span>
+        <span class="meta-value">{{ property.builtArea }} Sq Ft</span>
+      </div>
+    </div>
+
+  </div>
+</div>
