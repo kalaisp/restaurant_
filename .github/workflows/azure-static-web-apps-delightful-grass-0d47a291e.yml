@@ -26,10 +26,9 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "Frontend"                    # ← Your Angular folder
-          api_location: ""                            # No API here
-          output_location: "dist/Frontend/browser"    # ← This was missing/wrong
-
+          app_location: "Frontend"
+          api_location: ""
+          output_location: "dist/Frontend/browser"
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
