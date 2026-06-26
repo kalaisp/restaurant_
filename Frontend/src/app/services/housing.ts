@@ -20,6 +20,7 @@ export class Housing {
   }
   getAllProperties(SellRent?: number): Observable<property[]> {
     return this.http.get<property[]>(this.baseUrl+'/property/list/'+SellRent?.toString());
+    // return this.http.get<property[]>('https://thankful-field-0a9a0990f.7.azurestaticapps.net/api/property/list/'+SellRent?.toString());
     // return this.http.get<any>('assets/data/properties.json').pipe(
   //   map(data => {
   //     const propertiesArray: Array<property> = [];
