@@ -55,12 +55,17 @@ builder.Services.AddDbContext<DataContext>(options =>
 // ✅ Add CORS for Angular
 builder.Services.AddCors(options => {
     options.AddPolicy("AllowAngular", policy => {
-        policy.WithOrigins("http://localhost:4200",
-        "https://restorent-angular.web.app", 
-        "https://thankful-field-0a9a0990f.7.azurestaticapps.net",
-        "https://thankful-glacier-0e04b2d1e.7.azurestaticapps.net",
-            "https://restorent-angular-api.web.app","http://localhost:81", 
-        "https://restorent-api-fdhnb3ahavf5c3cq.centralus-01.azurewebsites.net"
+        policy.WithOrigins(
+        //     "http://localhost:4200",
+        // "https://restorent-angular.web.app", 
+        // "https://thankful-field-0a9a0990f.7.azurestaticapps.net",
+        // "https://thankful-glacier-0e04b2d1e.7.azurestaticapps.net",
+        //     "https://restorent-angular-api.web.app","http://localhost:81", 
+        // "https://restorent-api-fdhnb3ahavf5c3cq.centralus-01.azurewebsites.net"
+        "http://localhost:4200",                                   // Local Angular
+            "https://thankful-glacier-0e04b2d1e.7.azurestaticapps.net", // Current frontend
+            "https://thankful-field-0a9a0990f.7.azurestaticapps.net",   // Old one
+            "https://restorent-angular.web.app"
         )
               .AllowAnyHeader()
         .AllowAnyMethod()
